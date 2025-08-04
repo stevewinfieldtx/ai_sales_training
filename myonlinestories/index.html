@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyOnlineStories - AI-Powered Personalized Children's Stories</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One:wght@400&family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1 class="main-title">MyOnlineStories</h1>
+            <p class="subtitle">Create magical, personalized stories with AI-powered illustrations</p>
+        </header>
+
+        <main class="main-content">
+            <form id="story-form" class="story-form">
+                <!-- API Configuration Section -->
+                <div class="form-section api-section">
+                    <h2>🔑 API Configuration</h2>
+                    <div class="form-group">
+                        <label for="kimi-api-key">Kimi AI API Key:</label>
+                        <input type="password" id="kimi-api-key" name="kimi-api-key" 
+                               placeholder="Enter your Kimi AI API key" 
+                               value="sk-H9V4SZjxkQG3Wfw7ZJQTtrpOMvVEVPI2yxjSvBfGrEg6EUyf">
+                        <small>Get your API key from <a href="https://platform.moonshot.cn" target="_blank">Kimi AI Platform</a></small>
+                    </div>
+                    <div class="form-group">
+                        <label for="runware-api-key">Runware API Key:</label>
+                        <input type="password" id="runware-api-key" name="runware-api-key" 
+                               placeholder="Enter your Runware API key">
+                        <small>Get your API key from <a href="https://runware.ai" target="_blank">Runware Platform</a></small>
+                    </div>
+                </div>
+
+                <!-- Character Details Section -->
+                <div class="form-section character-section">
+                    <h2>👤 Character Details</h2>
+                    <div class="form-group">
+                        <label for="character-name">Character Name:</label>
+                        <input type="text" id="character-name" name="character-name" 
+                               placeholder="Enter the main character's name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="age-range">Age Range:</label>
+                        <select id="age-range" name="age-range" required>
+                            <option value="">Select age range</option>
+                            <option value="child">Child (3-8 years)</option>
+                            <option value="teen">Teen (9-12 years)</option>
+                            <option value="young-adult">Young Adult (13-17 years)</option>
+                            <option value="adult">Adult (18+ years)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="character-photo">Character Photo (Optional):</label>
+                        <input type="file" id="character-photo" name="character-photo" 
+                               accept="image/*">
+                        <small>Upload a photo to personalize the character appearance</small>
+                    </div>
+                </div>
+
+                <!-- Story Preferences Section -->
+                <div class="form-section story-section">
+                    <h2>📚 Story Preferences</h2>
+                    <div class="form-group">
+                        <label for="story-genre">Story Genre:</label>
+                        <select id="story-genre" name="story-genre" required>
+                            <option value="">Select a genre</option>
+                            <option value="fantasy">Fantasy Adventure</option>
+                            <option value="adventure">Real-World Adventure</option>
+                            <option value="mystery">Mystery & Detective</option>
+                            <option value="sci-fi">Science Fiction</option>
+                            <option value="friendship">Friendship & Social</option>
+                            <option value="superhero">Superhero Action</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="story-setting">Story Setting:</label>
+                        <select id="story-setting" name="story-setting" required>
+                            <option value="">Select a setting</option>
+                            <option value="magical-forest">Enchanted Magical Forest</option>
+                            <option value="space-station">Futuristic Space Station</option>
+                            <option value="underwater-city">Underwater Atlantis City</option>
+                            <option value="mountain-village">Cozy Mountain Village</option>
+                            <option value="desert-oasis">Mysterious Desert Oasis</option>
+                            <option value="cloud-kingdom">Floating Cloud Kingdom</option>
+                            <option value="modern-city">Bustling Modern City</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="special-power">Special Power/Ability:</label>
+                        <select id="special-power" name="special-power" required>
+                            <option value="">Select a special ability</option>
+                            <option value="invisibility">Invisibility Power</option>
+                            <option value="flying">Flight & Soaring</option>
+                            <option value="telepathy">Mind Reading & Telepathy</option>
+                            <option value="time-travel">Time Travel Adventures</option>
+                            <option value="shape-shifting">Shape-Shifting Magic</option>
+                            <option value="elemental">Elemental Control (Fire/Water/Earth/Air)</option>
+                            <option value="healing">Magical Healing Powers</option>
+                        </select>
+                    </div>
+                </div>
+
+                <button type="submit" class="create-story-btn" id="create-story-btn">
+                    <span class="btn-text">Create My Story</span>
+                    <span class="btn-loading" style="display: none;">Creating...</span>
+                </button>
+            </form>
+
+            <!-- Loading Section -->
+            <div id="loading-section" class="loading-section" style="display: none;">
+                <div class="loading-container">
+                    <div class="loading-spinner"></div>
+                    <h3 id="loading-title">Creating Your Story...</h3>
+                    <p id="loading-description">Please wait while we craft your personalized adventure</p>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progress-fill"></div>
+                    </div>
+                    <p class="progress-text" id="progress-text">0%</p>
+                </div>
+            </div>
+
+            <!-- Story Display Section -->
+            <div id="story-section" class="story-section" style="display: none;">
+                <div class="story-container">
+                    <h2 class="story-title" id="story-title">Your Personalized Story</h2>
+                    <div class="story-content">
+                        <div class="story-artwork" id="story-artwork">
+                            <!-- Generated artwork will be displayed here -->
+                        </div>
+                        <div class="story-text" id="story-text">
+                            <!-- Generated story will be displayed here -->
+                        </div>
+                    </div>
+                    <div class="story-actions">
+                        <button class="action-btn" id="create-another-btn">Create Another Story</button>
+                        <button class="action-btn secondary" id="download-story-btn">Download Story</button>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer class="footer">
+            <p>&copy; 2024 MyOnlineStories. Powered by Kimi AI & Runware AI.</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

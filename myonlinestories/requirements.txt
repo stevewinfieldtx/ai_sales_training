@@ -1,0 +1,21 @@
+# MyOnlineStories - Python Dependencies
+# Optimized for Python 3.13 and Render deployment
+
+# Web Framework
+Flask>=2.3.0
+Werkzeug>=2.3.0
+
+# HTTP Requests
+requests>=2.31.0
+
+# CORS support
+Flask-CORS>=4.0.0
+
+# Environment variables
+python-dotenv>=1.0.0
+
+# Image processing (compatible version)
+Pillow>=10.1.0
+
+# Production server
+gunicorn>=21.0.0
