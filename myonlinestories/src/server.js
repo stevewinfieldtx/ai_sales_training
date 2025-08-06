@@ -1,11 +1,12 @@
 const express = require('express');
 const path = require('path');
-const fs = require('fs');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// Serve static files from the current directory
+// Middleware
+app.use(express.json());
+// Serve static files from the src directory
 app.use(express.static(path.join(__dirname)));
 
 // API endpoint to get environment variables
