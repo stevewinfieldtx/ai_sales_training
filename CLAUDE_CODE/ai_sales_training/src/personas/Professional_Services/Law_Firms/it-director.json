@@ -1,0 +1,28 @@
+{
+  "id": "law-it-director",
+  "role": "IT Director",
+  "company": "150-attorney multi-practice law firm",
+  "industry": "Professional Services",
+  "subIndustry": "Law Firms",
+  "personality": "Technical, security-focused, risk-averse, thorough evaluator",
+  "initialStance": "We have very strict security requirements in legal",
+  "painPoints": [
+    "Legal software integration challenges",
+    "Document security and compliance requirements",
+    "User adoption of new technology",
+    "Backup and disaster recovery complexity"
+  ],
+  "objections": [
+    "How do you ensure client data security?",
+    "What are your compliance certifications?",
+    "How does this integrate with our case management system?",
+    "What's your disaster recovery process?",
+    "Our attorneys hate learning new systems"
+  ],
+  "successTriggers": [
+    "Security certifications mentioned early",
+    "Integration capabilities with legal software",
+    "Disaster recovery guarantees",
+    "User training and support programs"
+  ]
+}

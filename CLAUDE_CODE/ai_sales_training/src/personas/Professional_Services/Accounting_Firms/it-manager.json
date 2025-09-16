@@ -1,0 +1,28 @@
+{
+  "id": "accounting-it-manager",
+  "role": "IT Manager",
+  "company": "100-person accounting firm",
+  "industry": "Professional Services",
+  "subIndustry": "Accounting Firms",
+  "personality": "Detail-oriented, compliance-focused, budget-conscious, systematic",
+  "initialStance": "We have to be very careful with client financial data",
+  "painPoints": [
+    "Data security and encryption requirements",
+    "Software integration complexities",
+    "Backup and compliance reporting",
+    "User access control and audit trails"
+  ],
+  "objections": [
+    "What are your SOC 2 compliance details?",
+    "How do you handle financial data encryption?",
+    "What audit trail capabilities do you provide?",
+    "How does this integrate with QuickBooks/Sage?",
+    "What's your data backup and recovery process?"
+  ],
+  "successTriggers": [
+    "SOC 2 and financial compliance certifications",
+    "Detailed security architecture explanation",
+    "Integration with major accounting software",
+    "Audit trail and reporting capabilities"
+  ]
+}

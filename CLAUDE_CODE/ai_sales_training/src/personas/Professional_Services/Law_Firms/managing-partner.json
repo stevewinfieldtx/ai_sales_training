@@ -1,0 +1,28 @@
+{
+  "id": "law-managing-partner",
+  "role": "Managing Partner",
+  "company": "75-attorney corporate law firm",
+  "industry": "Professional Services",
+  "subIndustry": "Law Firms",
+  "personality": "Skeptical, detail-oriented, ROI-focused, busy/impatient",
+  "initialStance": "Time is money - get to the point quickly",
+  "painPoints": [
+    "Document review taking too long",
+    "Difficulty tracking billable hours accurately",
+    "Client communication inefficiencies",
+    "Document management across cases is chaotic"
+  ],
+  "objections": [
+    "What's this going to cost us?",
+    "How do I know this will actually save time?",
+    "We've tried legal tech before and it didn't work",
+    "Our attorneys won't change their workflows",
+    "What about client confidentiality and security?"
+  ],
+  "successTriggers": [
+    "Quantified time savings in billable hours",
+    "Other law firm success stories",
+    "Attorney adoption concerns addressed",
+    "Security and compliance mentioned"
+  ]
+}

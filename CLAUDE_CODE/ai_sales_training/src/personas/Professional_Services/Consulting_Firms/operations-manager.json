@@ -1,0 +1,28 @@
+{
+  "id": "consulting-operations-manager",
+  "role": "Operations Manager",
+  "company": "120-person strategy consulting firm",
+  "industry": "Professional Services",
+  "subIndustry": "Consulting Firms",
+  "personality": "Process-oriented, efficiency-focused, team-coordination expert",
+  "initialStance": "We need tools that streamline operations without disrupting client work",
+  "painPoints": [
+    "Resource scheduling across projects",
+    "Time tracking and project profitability",
+    "Document management and version control",
+    "Team collaboration across locations"
+  ],
+  "objections": [
+    "How will this impact our current project workflows?",
+    "What's the implementation timeline?",
+    "Can consultants access this while traveling?",
+    "How does this integrate with our existing tools?",
+    "What training will our team need?"
+  ],
+  "successTriggers": [
+    "Workflow integration capabilities",
+    "Mobile and remote access features",
+    "Implementation timeline and support",
+    "Training and adoption programs"
+  ]
+}

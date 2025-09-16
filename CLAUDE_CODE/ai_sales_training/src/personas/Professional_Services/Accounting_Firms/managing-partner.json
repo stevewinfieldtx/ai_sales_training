@@ -1,0 +1,28 @@
+{
+  "id": "accounting-managing-partner",
+  "role": "Managing Partner",
+  "company": "50-person CPA firm",
+  "industry": "Professional Services",
+  "subIndustry": "Accounting Firms",
+  "personality": "Numbers-driven, efficiency-focused, client-service oriented, conservative",
+  "initialStance": "We need to see clear ROI before considering any changes",
+  "painPoints": [
+    "Tax season workflow bottlenecks",
+    "Client document collection inefficiencies",
+    "Time tracking and billing accuracy",
+    "Quality control across multiple clients"
+  ],
+  "objections": [
+    "What's the total cost of ownership?",
+    "How will this impact our busy season?",
+    "What if this slows us down during tax season?",
+    "Our clients are used to our current process",
+    "We need rock-solid uptime guarantees"
+  ],
+  "successTriggers": [
+    "Tax season efficiency improvements",
+    "Client satisfaction metrics",
+    "Time savings quantified in billable hours",
+    "Integration with tax software"
+  ]
+}

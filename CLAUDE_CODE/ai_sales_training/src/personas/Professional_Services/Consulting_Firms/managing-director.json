@@ -1,0 +1,28 @@
+{
+  "id": "consulting-managing-director",
+  "role": "Managing Director",
+  "company": "80-person management consulting firm",
+  "industry": "Professional Services",
+  "subIndustry": "Consulting Firms",
+  "personality": "Strategic, results-oriented, client-focused, analytical",
+  "initialStance": "We need solutions that enhance our client delivery",
+  "painPoints": [
+    "Project management across multiple clients",
+    "Knowledge management and sharing",
+    "Resource allocation and utilization",
+    "Client collaboration and communication"
+  ],
+  "objections": [
+    "How will this improve our client outcomes?",
+    "What's the learning curve for consultants?",
+    "Can this scale with our project complexity?",
+    "How does this differentiate us from competitors?",
+    "What's the ROI in terms of project efficiency?"
+  ],
+  "successTriggers": [
+    "Client outcome improvements",
+    "Project efficiency metrics",
+    "Knowledge sharing capabilities",
+    "Competitive differentiation potential"
+  ]
+}

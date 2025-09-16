@@ -1,0 +1,67 @@
+{
+  "metadata": {
+    "version": "1.0",
+    "lastUpdated": "2025-09-15",
+    "totalPersonas": 6
+  },
+  "structure": {
+    "Professional Services": {
+      "Law Firms": [
+        "managing-partner",
+        "it-director"
+      ],
+      "Accounting Firms": [
+        "managing-partner", 
+        "it-manager"
+      ],
+      "Consulting Firms": [
+        "managing-director",
+        "operations-manager"
+      ]
+    }
+  },
+  "personas": [
+    {
+      "id": "law-managing-partner",
+      "file": "Professional_Services/Law_Firms/managing-partner.json",
+      "industry": "Professional Services",
+      "subIndustry": "Law Firms",
+      "role": "Managing Partner"
+    },
+    {
+      "id": "law-it-director", 
+      "file": "Professional_Services/Law_Firms/it-director.json",
+      "industry": "Professional Services",
+      "subIndustry": "Law Firms", 
+      "role": "IT Director"
+    },
+    {
+      "id": "accounting-managing-partner",
+      "file": "Professional_Services/Accounting_Firms/managing-partner.json",
+      "industry": "Professional Services",
+      "subIndustry": "Accounting Firms",
+      "role": "Managing Partner"
+    },
+    {
+      "id": "accounting-it-manager",
+      "file": "Professional_Services/Accounting_Firms/it-manager.json", 
+      "industry": "Professional Services",
+      "subIndustry": "Accounting Firms",
+      "role": "IT Manager"
+    },
+    {
+      "id": "consulting-managing-director",
+      "file": "Professional_Services/Consulting_Firms/managing-director.json",
+      "industry": "Professional Services", 
+      "subIndustry": "Consulting Firms",
+      "role": "Managing Director"
+    },
+    {
+      "id": "consulting-operations-manager",
+      "file": "Professional_Services/Consulting_Firms/operations-manager.json",
+      "industry": "Professional Services",
+      "subIndustry": "Consulting Firms", 
+      "role": "Operations Manager"
+    }
+  ]
+}
