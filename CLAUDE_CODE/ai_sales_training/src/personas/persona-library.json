@@ -1,0 +1,72 @@
+{
+  "metadata": {
+    "version": "2025.02",
+    "description": "Persona library definitions organized by offering and industry",
+    "defaultTestCaseCount": 10
+  },
+  "offerings": [
+    {
+      "id": "productivity-security-suite",
+      "name": "ProductivityPro Security Suite",
+      "description": "Comprehensive productivity and security platform built for professional services organizations.",
+      "industries": [
+        {
+          "id": "professional-services",
+          "name": "Professional Services",
+          "subIndustries": [
+            {
+              "id": "law-firms",
+              "name": "Law Firms",
+              "personas": [
+                "law-managing-partner",
+                "law-it-director"
+              ]
+            },
+            {
+              "id": "accounting-firms",
+              "name": "Accounting Firms",
+              "personas": [
+                "accounting-managing-partner",
+                "accounting-it-manager"
+              ]
+            },
+            {
+              "id": "consulting-firms",
+              "name": "Consulting Firms",
+              "personas": [
+                "consulting-managing-director",
+                "consulting-operations-manager"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "defaultSelections": {
+    "offeringId": "productivity-security-suite",
+    "industryId": "professional-services",
+    "subIndustryId": "law-firms",
+    "personaId": "law-managing-partner"
+  },
+  "domainOverrides": {
+    "lexlaw.com": {
+      "offeringId": "productivity-security-suite",
+      "industryId": "professional-services",
+      "subIndustryId": "law-firms",
+      "personaId": "law-managing-partner"
+    },
+    "numbersandco.com": {
+      "offeringId": "productivity-security-suite",
+      "industryId": "professional-services",
+      "subIndustryId": "accounting-firms",
+      "personaId": "accounting-managing-partner"
+    },
+    "proconsulting.io": {
+      "offeringId": "productivity-security-suite",
+      "industryId": "professional-services",
+      "subIndustryId": "consulting-firms",
+      "personaId": "consulting-managing-director"
+    }
+  }
+}

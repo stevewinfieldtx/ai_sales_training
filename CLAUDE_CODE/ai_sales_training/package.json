@@ -13,6 +13,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@supabase/supabase-js": "^2.57.4",
     "@tailwindcss/postcss": "^4.1.13",
     "@types/node": "^22.7.0",
     "@types/react": "^18.3.8",
