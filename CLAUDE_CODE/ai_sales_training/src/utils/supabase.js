@@ -9,80 +9,86 @@ if (!supabaseUrl || !supabaseAnonKey) {
 
 export const supabase = createClient(supabaseUrl, supabaseAnonKey)
 
-// Database types for TypeScript
-export interface Company {
-  id: string
-  name: string
-  domain: string
-  created_at: string
-  updated_at: string
-}
+// JSDoc typedefs are provided for editor IntelliSense without breaking the build pipeline
+/**
+ * @typedef {Object} Company
+ * @property {string} id
+ * @property {string} name
+ * @property {string} domain
+ * @property {string} created_at
+ * @property {string} updated_at
+ */
 
-export interface UserProfile {
-  id: string
-  email: string
-  full_name?: string
-  company_id: string
-  role: 'admin' | 'user'
-  created_at: string
-  updated_at: string
-  companies?: Company
-}
+/**
+ * @typedef {Object} UserProfile
+ * @property {string} id
+ * @property {string} email
+ * @property {string=} full_name
+ * @property {string} company_id
+ * @property {'admin'|'user'} role
+ * @property {string} created_at
+ * @property {string} updated_at
+ * @property {Company=} companies
+ */
 
-export interface Product {
-  id: string
-  company_id: string
-  name: string
-  description?: string
-  value_proposition?: string
-  product_type?: string
-  category?: string
-  configuration: any
-  raw_content?: string
-  is_active: boolean
-  created_by: string
-  created_at: string
-  updated_at: string
-  user_profiles?: { full_name: string }
-  product_documents?: ProductDocument[]
-  product_urls?: ProductUrl[]
-}
+/**
+ * @typedef {Object} ProductDocument
+ * @property {string} id
+ * @property {string} product_id
+ * @property {string} filename
+ * @property {string} file_type
+ * @property {number} file_size
+ * @property {string} storage_path
+ * @property {string=} extracted_content
+ * @property {string} uploaded_by
+ * @property {string} created_at
+ */
 
-export interface ProductDocument {
-  id: string
-  product_id: string
-  filename: string
-  file_type: string
-  file_size: number
-  storage_path: string
-  extracted_content?: string
-  uploaded_by: string
-  created_at: string
-}
+/**
+ * @typedef {Object} ProductUrl
+ * @property {string} id
+ * @property {string} product_id
+ * @property {string} url
+ * @property {string=} title
+ * @property {string=} extracted_content
+ * @property {'pending'|'processed'|'failed'} status
+ * @property {string} added_by
+ * @property {string} created_at
+ */
 
-export interface ProductUrl {
-  id: string
-  product_id: string
-  url: string
-  title?: string
-  extracted_content?: string
-  status: 'pending' | 'processed' | 'failed'
-  added_by: string
-  created_at: string
-}
+/**
+ * @typedef {Object} Product
+ * @property {string} id
+ * @property {string} company_id
+ * @property {string} name
+ * @property {string=} description
+ * @property {string=} value_proposition
+ * @property {string=} product_type
+ * @property {string=} category
+ * @property {*} configuration
+ * @property {string=} raw_content
+ * @property {boolean} is_active
+ * @property {string} created_by
+ * @property {string} created_at
+ * @property {string} updated_at
+ * @property {{ full_name: string }=} user_profiles
+ * @property {ProductDocument[]=} product_documents
+ * @property {ProductUrl[]=} product_urls
+ */
 
-export interface TrainingSession {
-  id: string
-  company_id: string
-  product_id: string
-  user_id: string
-  session_type: 'human_practice' | 'ai_simulation'
-  persona_id: string
-  pitch_type: string
-  llm_model: string
-  conversation_data: any
-  results: any
-  duration_minutes?: number
-  success_rate?: number
-  created_at: string
-}
+/**
+ * @typedef {Object} TrainingSession
+ * @property {string} id
+ * @property {string} company_id
+ * @property {string} product_id
+ * @property {string} user_id
+ * @property {'human_practice'|'ai_simulation'} session_type
+ * @property {string} persona_id
+ * @property {string} pitch_type
+ * @property {string} llm_model
+ * @property {*} conversation_data
+ * @property {*} results
+ * @property {number=} duration_minutes
+ * @property {number=} success_rate
+ * @property {string} created_at
+ */
