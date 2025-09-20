@@ -1,6 +1,8 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useMemo } from 'react';
 import { Play, Pause, RotateCcw, BarChart3, Users, MessageSquare, Settings, Zap } from 'lucide-react';
 import { personaLoader } from './utils/personaLoader';
+import { buildSalesExecMessages, SalesOfferingContext } from './utils/salesExecPromptBuilder';
+import createSalesInfluenceMetaPrompt from './utils/createSalesInfluenceMetaPrompt';
 
 // OpenRouter LLM Options
 const LLM_OPTIONS = [
@@ -22,6 +24,35 @@ const SALES_PITCHES = {
   complianceFirst: "Hi [Name], I'm calling because we specialize in helping [subIndustry] maintain compliance while improving efficiency. Given the regulatory requirements in your industry, I thought this might be relevant."
 };
 
+type SalesOfferingDefinition = SalesOfferingContext & { id: string; name: string };
+
+const SALES_OFFERINGS: Record<string, SalesOfferingDefinition> = {
+  'productivity-pro-ps-na': {
+    id: 'productivity-pro-ps-na',
+    name: 'ProductivityPro Suite — NA Legal',
+    industry: 'Professional Services',
+    subIndustry: 'Law Firms',
+    salesMotion: 'Outbound prospecting to compliance-focused law firms',
+    productBlurb:
+      'Comprehensive productivity and security platform designed for firms that need airtight compliance and frictionless collaboration.',
+    geography: 'North America',
+    extraNotes: 'Lead with SOC 2 Type II proof points and the 340% ROI achieved within 12 months.'
+  },
+  'productivity-pro-ps-uk': {
+    id: 'productivity-pro-ps-uk',
+    name: 'ProductivityPro Suite — UK Consulting',
+    industry: 'Professional Services',
+    subIndustry: 'Consulting Firms',
+    salesMotion: 'Account-based pursuit of UK consulting practices with distributed project teams',
+    productBlurb:
+      'Secure client portals and workflow automation purpose-built for consulting engagements that span multiple geographies.',
+    geography: 'United Kingdom',
+    extraNotes: 'Reference GDPR posture, localized success resources, and fast implementation windows.'
+  }
+};
+
+const DEFAULT_OFFERING_ID = 'productivity-pro-ps-na';
+
 const SalesTrainingSystem = () => {
   const [activeTab, setActiveTab] = useState('simulate');
   const [customerPersonas, setCustomerPersonas] = useState({});
@@ -36,8 +67,19 @@ const SalesTrainingSystem = () => {
   const [simulationResults, setSimulationResults] = useState([]);
   const [userInput, setUserInput] = useState('');
   const [personasLoaded, setPersonasLoaded] = useState(false);
+  const [selectedOfferingId, setSelectedOfferingId] = useState(DEFAULT_OFFERING_ID);
 
   const conversationRef = useRef(null);
+  const latestMetaPromptRef = useRef('');
+
+  const selectedOffering = SALES_OFFERINGS[selectedOfferingId] ?? SALES_OFFERINGS[DEFAULT_OFFERING_ID];
+
+  const metaPromptPreview = useMemo(() => {
+    if (!selectedOffering) {
+      return '';
+    }
+    return createSalesInfluenceMetaPrompt(selectedOffering);
+  }, [selectedOffering]);
 
   // Load personas on component mount
   useEffect(() => {
@@ -55,10 +97,25 @@ const SalesTrainingSystem = () => {
   }, []);
 
   // Call OpenRouter API with improved error handling
-  const callOpenRouter = async (messages, systemPrompt) => {
+  const callOpenRouter = async (
+    messages: Array<{ role: 'user' | 'assistant'; content: string }>,
+    systemPrompt: string
+  ) => {
     if (!apiKey) {
       throw new Error('OpenRouter API key is required');
     }
+
+    if (!selectedOffering) {
+      throw new Error('Selected offering configuration is missing');
+    }
+
+    const { metaPrompt, messages: salesExecMessages } = buildSalesExecMessages({
+      systemPrompt,
+      messages,
+      offering: selectedOffering
+    });
+
+    latestMetaPromptRef.current = metaPrompt;
 
     const response = await fetch('https://openrouter.ai/api/v1/chat/completions', {
       method: 'POST',
@@ -70,10 +127,7 @@ const SalesTrainingSystem = () => {
       },
       body: JSON.stringify({
         model: selectedLLM,
-        messages: [
-          { role: 'system', content: systemPrompt },
-          ...messages
-        ],
+        messages: salesExecMessages,
         max_tokens: 200,
         temperature: 0.7
       })
@@ -342,7 +396,7 @@ const SalesTrainingSystem = () => {
         <p className="text-gray-600">Professional Services Industry Focus - Practice first calls with AI customer agents</p>
         
         {/* API Configuration */}
-        <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="mt-4 grid grid-cols-1 md:grid-cols-3 gap-4">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">OpenRouter API Key</label>
             <input
@@ -355,8 +409,8 @@ const SalesTrainingSystem = () => {
           </div>
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">Language Model</label>
-            <select 
-              value={selectedLLM} 
+            <select
+              value={selectedLLM}
               onChange={(e) => setSelectedLLM(e.target.value)}
               className="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
             >
@@ -367,7 +421,47 @@ const SalesTrainingSystem = () => {
               ))}
             </select>
           </div>
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">Sales Offering</label>
+            <select
+              value={selectedOffering.id}
+              onChange={(event) => setSelectedOfferingId(event.target.value)}
+              className="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+            >
+              {Object.values(SALES_OFFERINGS).map((offering) => (
+                <option key={offering.id} value={offering.id}>
+                  {offering.name}
+                </option>
+              ))}
+            </select>
+            <p className="text-xs text-gray-500 mt-2 leading-relaxed">
+              {selectedOffering?.productBlurb}
+            </p>
+          </div>
         </div>
+
+        <div className="mt-4 bg-blue-50 border border-blue-100 rounded-lg p-4 text-sm text-blue-900 space-y-2">
+          <div>
+            <strong>Sales motion:</strong> {selectedOffering?.salesMotion}
+          </div>
+          <div>
+            <strong>Target geography:</strong> {selectedOffering?.geography}
+          </div>
+          {selectedOffering?.extraNotes && (
+            <div>
+              <strong>Extra notes:</strong> {selectedOffering.extraNotes}
+            </div>
+          )}
+        </div>
+
+        <details className="mt-3 bg-gray-50 border border-gray-200 rounded-lg">
+          <summary className="px-4 py-2 font-medium text-gray-700 cursor-pointer select-none">
+            Meta prompt JSON preview
+          </summary>
+          <pre className="px-4 py-3 text-xs overflow-x-auto text-gray-600 whitespace-pre-wrap">
+            {latestMetaPromptRef.current || metaPromptPreview}
+          </pre>
+        </details>
       </div>
 
       {/* Navigation Tabs */}
